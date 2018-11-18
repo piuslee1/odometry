@@ -9,8 +9,8 @@ import (
 
 func main() {
 	config := &serial.Config{
-		Name:        "/dev/ttyAMA0",
-		Baud:        9600,
+		Name:        "/dev/ttyACM0",
+		Baud:        115200,
 		ReadTimeout: 1,
 		Size:        8,
 	}
