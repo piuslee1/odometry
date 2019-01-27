@@ -5,7 +5,7 @@ import redis
 from time import sleep
 
 # Change port according to setup
-port = "/dev/ttyS1"
+port = "/dev/tty0"
 
 
 def main_arduino():
