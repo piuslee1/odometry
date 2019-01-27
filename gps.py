@@ -22,17 +22,17 @@ def main_arduino():
 			return
 
 def main():
-        print("Running GPS Test")
+	print("Running GPS Test")
 	ser = serial.Serial(port, 9600)
-        r = redis.Redis(host='192.168.7.1', port='6379')
-        p = r.pubsub()
+	r = redis.Redis(host='192.168.7.1', port='6379')
+	p = r.pubsub()
 	while True:
 		try:
 			gpsdat = ser.readline()
 			if gpsdat[0:6] == "$GPGGA":
 				msg = pynmea2.parse(gpsdat)
-                                text = str(msg.latitude) + ',' + str(msg.longitude)
-                                r.publish('gps', text)
+        text = '(' + str(msg.latitude) + str(msg.lat_dir) + ',' + str(msg.longitude) + str(msg.lon_dir) + ')'
+        r.publish('SENSORS:GPS', text)
 		except Exception as e:
 			print(e)
 			return
